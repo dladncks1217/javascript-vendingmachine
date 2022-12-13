@@ -5,9 +5,8 @@ const initCoins = (money) => {
   const unit = [500, 100, 50, 10];
 
   for (let index = 0; index < 3; index += 1) {
-    let maxCoin = money % unit[index];
-
-    if (maxCoin === money) continue;
+    if (money % unit[index] === money) continue;
+    let maxCoin = Math.floor(money / unit[index]);
     result[index] = Random.pickNumberInRange(0, maxCoin);
     money -= unit[index] * result[index];
   }
