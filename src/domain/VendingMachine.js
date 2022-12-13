@@ -2,12 +2,12 @@ class VendingMachine {
   #coinList;
   #inputMoney;
 
-  constructor(coins) {
-    this.#coinList = coins.slice();
+  constructor(input) {
+    this.#inputMoney = Number(input);
   }
 
-  setMoney(input) {
-    this.#inputMoney = Number(input);
+  initCoinList(coins) {
+    this.#coinList = coins.slice();
   }
 }
 
