@@ -2,6 +2,7 @@ const VendingMachine = require('./domain/VendingMachine');
 const InputView = require('./UI/InputView');
 const OutputView = require('./UI/OutputView');
 const initCoins = require('./utils/initCoins');
+const initDrinkList = require('./utils/initDrinkList');
 const verify = require('./utils/verify');
 
 class App {
@@ -26,9 +27,22 @@ class App {
 
   settingResult(money) {
     const coinResult = initCoins(Number(money));
-
     this.#myMachine.initCoinList(coinResult);
     OutputView.printCoinList(coinResult);
+    return this.inputDrinks();
+  }
+
+  inputDrinks() {
+    InputView.inputDrinkList((input) => {
+      try {
+        verify.drinkList(input);
+        const [nameData, priceData, amountData] = initDrinkList(input);
+        this.#myMachine.initDrinks(nameData, priceData, amountData);
+      } catch (error) {
+        OutputView.printInputDrinks();
+        return this.inputDrinks();
+      }
+    });
   }
 }
 
