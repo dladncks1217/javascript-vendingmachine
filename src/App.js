@@ -7,6 +7,7 @@ const verify = require('./utils/verify');
 
 class App {
   #myMachine;
+  #myMoney;
 
   play() {
     return this.gameSetting();
@@ -19,7 +20,7 @@ class App {
         this.#myMachine = new VendingMachine(input);
         return this.settingResult(input);
       } catch (error) {
-        OutputView.printVendingMachineError();
+        OutputView.ErrorPrintVendingMachine();
         return this.gameSetting();
       }
     });
@@ -29,21 +30,39 @@ class App {
     const coinResult = initCoins(Number(money));
     this.#myMachine.initCoinList(coinResult);
     OutputView.printCoinList(coinResult);
-    return this.inputDrinks();
+    return this.inputDrinkList();
   }
 
-  inputDrinks() {
+  inputDrinkList() {
     InputView.inputDrinkList((input) => {
       try {
         verify.drinkList(input);
         const [nameData, priceData, amountData] = initDrinkList(input);
         this.#myMachine.initDrinks(nameData, priceData, amountData);
+        return this.inputMyMoney();
       } catch (error) {
-        OutputView.printInputDrinks();
-        return this.inputDrinks();
+        OutputView.ErrorPrintInputDrinks();
+        return this.inputDrinkList();
       }
     });
   }
+
+  inputMyMoney() {
+    InputView.inputMyMoney((input) => {
+      try {
+        verify.myMoney(input);
+        this.#myMoney = Number(input);
+        return this.buyDrink();
+      } catch (error) {
+        OutputView.ErrorInputMyMoney();
+        return this.inputMyMoney();
+      }
+    });
+  }
+
+  //   buyDrink() {
+  //     InputView.inputBuyDrinkName((input) => {});
+  //   }
 }
 
 const app = new App();

@@ -9,11 +9,15 @@ const OutputView = {
     Console.print(MESSAGE.LEFT_MOENY(money));
   },
 
-  printVendingMachineError() {
+  ErrorPrintVendingMachine() {
     Console.print('[ERROR]');
   },
 
-  printInputDrinks() {
+  ErrorPrintInputDrinks() {
+    Console.print('[ERROR]');
+  },
+
+  ErrorInputMyMoney() {
     Console.print('[ERROR]');
   },
 };
