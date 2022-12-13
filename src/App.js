@@ -60,9 +60,14 @@ class App {
     });
   }
 
-  //   buyDrink() {
-  //     InputView.inputBuyDrinkName((input) => {});
-  //   }
+  verifyBuyDrink() {
+    InputView.inputBuyDrinkName((input) => {
+      if (this.#myMachine.hasDrinkName(input)) return this.buyDrink(input);
+      return this.verifyBuyDrink();
+    });
+  }
+
+  buyDrink(input) {}
 }
 
 const app = new App();

@@ -21,6 +21,11 @@ class VendingMachine {
     this.#drinkPriceList = drinkPriceList.slice();
     this.#drinkAmount = drinkAmount.slice();
   }
+
+  hasDrinkName(name) {
+    const result = this.#drinkList.includes(name);
+    return result;
+  }
 }
 
 module.exports = VendingMachine;
