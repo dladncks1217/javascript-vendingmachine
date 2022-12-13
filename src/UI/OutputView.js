@@ -12,6 +12,10 @@ const OutputView = {
   printVendingMachineError() {
     Console.print('[ERROR]');
   },
+
+  printInputDrinks() {
+    Console.print('[ERROR]');
+  },
 };
 
 module.exports = OutputView;
