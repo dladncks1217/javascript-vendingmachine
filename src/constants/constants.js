@@ -1,8 +1,6 @@
 const MESSAGE = {
-  COIN_LIST: (coins) => `500원 - ${coins[0]}개\n
-  100원 - ${coins[1]}개\n
-  50원 - ${coins[2]}개\n
-  10원 - ${coins[3]}개\n`,
+  COIN_LIST: (coins) =>
+    `500원 - ${coins[0]}개\n100원 - ${coins[1]}개\n50원 - ${coins[2]}개\n10원 - ${coins[3]}개\n`,
   LEFT_MOENY: (money) => `투입 금액: ${money}원`,
   // 잔돈 출력
 };
