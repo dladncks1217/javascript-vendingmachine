@@ -8,6 +8,10 @@ const OutputView = {
   printLeftMoney(money) {
     Console.print(MESSAGE.LEFT_MOENY(money));
   },
+
+  printVendingMachineError() {
+    Console.print('[ERROR]');
+  },
 };
 
 module.exports = OutputView;
