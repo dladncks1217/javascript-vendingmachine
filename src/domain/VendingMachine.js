@@ -6,6 +6,7 @@ class VendingMachine {
   #drinkList;
   #drinkPriceList;
   #drinkAmount;
+  #minPrice;
 
   constructor(input) {
     this.#inputMoney = Number(input);
@@ -22,12 +23,18 @@ class VendingMachine {
     this.#drinkList = drinkList.slice();
     this.#drinkPriceList = drinkPriceList.slice();
     this.#drinkAmount = drinkAmount.slice();
+    this.#minPrice = Math.min(...this.#drinkPriceList);
   }
 
   hasDrinkName(name) {
     const result = this.#drinkList.includes(name);
     // return result;
     if (result === false) throw new Error('[ERROR]');
+  }
+
+  isMoneyBiggerThanMinPrice(money) {
+    if (money >= this.#minPrice) return true;
+    return false;
   }
 
   canBuyDrink(name, money) {

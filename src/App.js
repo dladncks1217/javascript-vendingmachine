@@ -75,6 +75,7 @@ class App {
 
   buyDrink(input) {
     this.#myMoney = this.#myMachine.buyDrink(input, this.#myMoney);
+    if (!this.#myMachine.isMoneyBiggerThanMinPrice(this.#myMoney)) return this.returnCharge();
     return this.verifyBuyDrink();
   }
 
