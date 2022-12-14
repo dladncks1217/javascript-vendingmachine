@@ -52,7 +52,7 @@ class App {
       try {
         verify.myMoney(input);
         this.#myMoney = Number(input);
-        return this.buyDrink();
+        return this.verifyBuyDrink();
       } catch (error) {
         OutputView.ErrorInputMyMoney();
         return this.inputMyMoney();
@@ -62,12 +62,26 @@ class App {
 
   verifyBuyDrink() {
     InputView.inputBuyDrinkName((input) => {
-      if (this.#myMachine.hasDrinkName(input)) return this.buyDrink(input);
-      return this.verifyBuyDrink();
+      try {
+        if (this.#myMachine.canBuyDrink(input, this.#myMoney)) return this.buyDrink(input);
+        // if (!this.#myMachine.hasDrinkName(input)) return this.verifyBuyDrink();
+        this.#myMachine.hasDrinkName(input);
+        return this.returnCharge();
+      } catch (error) {
+        return this.verifyBuyDrink();
+      }
     });
   }
 
-  buyDrink(input) {}
+  buyDrink(input) {
+    this.#myMoney = this.#myMachine.buyDrink(input, this.#myMoney);
+    console.log(this.#myMoney);
+    return this.verifyBuyDrink();
+  }
+
+  returnCharge() {
+    console.log('끝남!');
+  }
 }
 
 const app = new App();

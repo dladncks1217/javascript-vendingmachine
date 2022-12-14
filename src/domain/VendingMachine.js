@@ -24,7 +24,20 @@ class VendingMachine {
 
   hasDrinkName(name) {
     const result = this.#drinkList.includes(name);
-    return result;
+    // return result;
+    if (result === false) throw new Error('[ERROR]');
+  }
+
+  canBuyDrink(name, money) {
+    const drinkIndex = this.#drinkList.indexOf(name);
+    if (money >= this.#drinkPriceList[drinkIndex] && this.#drinkAmount[drinkIndex] > 0) return true;
+    return false;
+  }
+
+  buyDrink(name, money) {
+    const drinkIndex = this.#drinkList.indexOf(name);
+    this.#drinkAmount[drinkIndex]--;
+    return money - this.#drinkPriceList[drinkIndex];
   }
 }
 
