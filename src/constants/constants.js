@@ -1,6 +1,16 @@
 const MESSAGE = {
   COIN_LIST: (coins) =>
     `500원 - ${coins[0]}개\n100원 - ${coins[1]}개\n50원 - ${coins[2]}개\n10원 - ${coins[3]}개\n`,
+
+  RESULT_COIN_LIST: (coins) => {
+    let result = '';
+    if (coins[0] > 0) result += `500원 - ${coins[0]}개\n`;
+    if (coins[1] > 0) result += `100원 - ${coins[1]}개\n`;
+    if (coins[2] > 0) result += `50원 - ${coins[2]}개\n`;
+    if (coins[3] > 0) result += `10원 - ${coins[3]}개\n`;
+    return result;
+  },
+
   LEFT_MOENY: (money) => `투입 금액: ${money}원`,
   // 잔돈 출력
 };
