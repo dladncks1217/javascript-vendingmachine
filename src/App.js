@@ -61,10 +61,10 @@ class App {
   }
 
   verifyBuyDrink() {
+    OutputView.committedMoney(this.#myMoney);
     InputView.inputBuyDrinkName((input) => {
       try {
         if (this.#myMachine.canBuyDrink(input, this.#myMoney)) return this.buyDrink(input);
-        // if (!this.#myMachine.hasDrinkName(input)) return this.verifyBuyDrink();
         this.#myMachine.hasDrinkName(input);
         return this.returnCharge();
       } catch (error) {
@@ -75,12 +75,13 @@ class App {
 
   buyDrink(input) {
     this.#myMoney = this.#myMachine.buyDrink(input, this.#myMoney);
-    console.log(this.#myMoney);
     return this.verifyBuyDrink();
   }
 
   returnCharge() {
-    console.log('끝남!');
+    OutputView.committedMoney(this.#myMoney);
+    OutputView.printResultCoinList(this.#myMachine.calculateResult(this.#myMoney));
+    OutputView.endConsole();
   }
 }
 

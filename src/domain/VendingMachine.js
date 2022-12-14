@@ -1,3 +1,5 @@
+const changesResult = require('../utils/changesResult');
+
 class VendingMachine {
   #coinList;
   #inputMoney;
@@ -38,6 +40,10 @@ class VendingMachine {
     const drinkIndex = this.#drinkList.indexOf(name);
     this.#drinkAmount[drinkIndex]--;
     return money - this.#drinkPriceList[drinkIndex];
+  }
+
+  calculateResult(money) {
+    return changesResult(money, this.#coinList);
   }
 }
 

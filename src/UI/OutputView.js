@@ -9,6 +9,18 @@ const OutputView = {
     Console.print(MESSAGE.LEFT_MOENY(money));
   },
 
+  committedMoney(money) {
+    Console.print(MESSAGE.LEFT_MOENY(money));
+  },
+
+  printResultCoinList(list) {
+    Console.print(MESSAGE.RESULT_COIN_LIST(list));
+  },
+
+  endConsole() {
+    Console.close();
+  },
+
   ErrorPrintVendingMachine() {
     Console.print('[ERROR]');
   },
